@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E6B5A712-2B4F-4A63-B012-591498501EEB</string>
+	<string>1C7CFAFC-46EE-4313-9A6E-072B70E4159F</string>
 	<key>IDESourceControlProjectName</key>
 	<string>TrampolineJumpSwift</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8C359ED240AEEA77B48FFCFE45CE2423CF642CAB</key>
-		<string>https://github.com/MikeFFG/BabyBounce.git</string>
+		<string>https://github.com/MikeFFG/BabyBounce</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>TrampolineJumpSwift.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/MikeFFG/BabyBounce.git</string>
+	<string>https://github.com/MikeFFG/BabyBounce</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>8C359ED240AEEA77B48FFCFE45CE2423CF642CAB</string>
 			<key>IDESourceControlWCCName</key>
-			<string>TrampolineJumpSwift%2013</string>
+			<string>BabyBounce</string>
 		</dict>
 	</array>
 </dict>

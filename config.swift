@@ -16,7 +16,7 @@ struct config {
     static let gameFont = "AppleSDGothicNeo-Bold"
     static let hightMarkerText = "---------RECORD HEIGHT-----------"
     static let perfectJumpText = "PERFECT JUMP!"
-    static let perfectJumpMultiplyerValue = CGFloat(20)
+    static let perfectJumpMultiplyerValue = CGFloat(200)
     static let initialImpulse = CGFloat(40.0)
     static let worldGravity = -2.0
     static let playerStartY = CGFloat(80.0)

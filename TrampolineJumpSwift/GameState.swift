@@ -13,6 +13,7 @@ class GameState {
     
     var score: Int
     var highScore: Int
+    var recordHeight: Int
     var allFlip: Int
 
     class var sharedInstance :GameState {
@@ -32,6 +33,7 @@ class GameState {
         
         highScore = defaults.integerForKey("highScore")
         allFlip = defaults.integerForKey("allFlip")
+        recordHeight = defaults.integerForKey("recordHeight")
     }
     
     func saveState() {
@@ -41,6 +43,7 @@ class GameState {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(highScore, forKey: "highScore")
         defaults.setInteger(allFlip, forKey: "allFlip")
+        defaults.setInteger(recordHeight, forKey: "recordHeight")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
