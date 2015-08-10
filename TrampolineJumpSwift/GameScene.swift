@@ -15,6 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var selectedNodes:[UITouch:SKSpriteNode] = [UITouch:SKSpriteNode]()
     var spinRightStart = SKAction.rotateByAngle(CGFloat(-M_PI/12.0), duration: NSTimeInterval(0.1))
     var spinLeftStart = SKAction.rotateByAngle(CGFloat(M_PI/12.0), duration: NSTimeInterval(0.1))
+    var starsConsumed = 0
+    var perfectJumpCount = 0
     
     // Layer Nodes
     var backgroundNode = SKNode()
@@ -82,11 +84,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // On Screen Labels
     var lblScore: SKLabelNode = SKLabelNode()
+    var lblHeight: SKLabelNode = SKLabelNode()
     var lblFF: SKLabelNode = SKLabelNode()
     var lblBF: SKLabelNode = SKLabelNode()
     var lblAllFlips: SKLabelNode = SKLabelNode()
     var lblFlipType: SKLabelNode = SKLabelNode()
-    var lblMaxJumpHeigtMarker: SKLabelNode = SKLabelNode()
+    var lblMaxJumpHeightMarker: SKLabelNode = SKLabelNode()
     
     
     // Coordinate of Top of Screen
@@ -191,16 +194,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Build the HUD
         //Highest Jump Line
-        let getHighestJump = String(format: "High Score: %d", GameState.sharedInstance.highScore)
+        let getHighestJump = String(format: "Highest Jump: %d", GameState.sharedInstance.recordHeight)
         let getHighestJumpInt:Int? = getHighestJump.toInt()
-        var heightMarkery = CGFloat(GameState.sharedInstance.highScore)
-        lblMaxJumpHeigtMarker = SKLabelNode(fontNamed: config.gameFont)
-        lblMaxJumpHeigtMarker.fontSize = 30
-        lblMaxJumpHeigtMarker.fontColor = SKColor.whiteColor()
-        lblMaxJumpHeigtMarker.position = CGPoint(x: xwidth/2, y: heightMarkery)
-        lblMaxJumpHeigtMarker.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
-        lblMaxJumpHeigtMarker.text = config.hightMarkerText
-        foregroundNode.addChild(lblMaxJumpHeigtMarker)
+        var heightMarkery = CGFloat(GameState.sharedInstance.recordHeight)
+        lblMaxJumpHeightMarker = SKLabelNode(fontNamed: config.gameFont)
+        lblMaxJumpHeightMarker.fontSize = 30
+        lblMaxJumpHeightMarker.fontColor = SKColor.whiteColor()
+        lblMaxJumpHeightMarker.position = CGPoint(x: xwidth/2, y: heightMarkery)
+        lblMaxJumpHeightMarker.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        lblMaxJumpHeightMarker.text = config.hightMarkerText
+        foregroundNode.addChild(lblMaxJumpHeightMarker)
         
         //Flip Quality Text
         lblFlipType = SKLabelNode(fontNamed: config.gameFont)
@@ -236,6 +239,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lblBF.text = "0"
         hudNode.addChild(lblBF)
         
+        // Height
+        lblHeight = SKLabelNode(fontNamed: config.gameFont)
+        lblHeight.fontSize = 30
+        lblHeight.fontColor = SKColor.whiteColor()
+        lblHeight.position = CGPoint(x: self.size.width-20, y: 40)
+        lblHeight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+        lblHeight.text = "0"
+        hudNode.addChild(lblHeight)
 
         // Score
         lblScore = SKLabelNode(fontNamed: config.gameFont)
@@ -324,15 +335,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         return playerNode
     }
-    
+   
+    // MARK: Update Counters
 
     func updateCounterRight() {
+        
         counterRight++
         isRotatingLeft = false
-        
-        let π = CGFloat(M_PI)
         var counterFloat = CGFloat(counterRight) * -0.1;
-        
         buttonOnCollision = true
         
         if counterFloat > -2.4{
@@ -373,17 +383,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func updateCounterLeft() {
         
         counterLeft++
-        
         isRotatingRight = false
-
-        
+        var counterFloat = CGFloat(counterLeft) * 0.1
         buttonOnCollision = true
         
-        var counterFloat = CGFloat(counterLeft) * 0.1
-        
-        if counterFloat <= 4.8{
+        if counterFloat <= 2.4{
             
             var spinLeft = SKAction.rotateByAngle(CGFloat(M_PI/12), duration: NSTimeInterval(0.1))
+            player.runAction(spinLeft)
+            
+        } else if counterFloat > 2.4 && counterFloat <= 4.8 {
+            
+            var spinLeft = SKAction.rotateByAngle(CGFloat(M_PI/6.0), duration: NSTimeInterval(0.1))
             player.runAction(spinLeft)
             
         } else {
@@ -393,9 +404,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        if counterLeft <= 48 {
+        if counterLeft <= 24 {
             
             totalRotationsSlowBF = (counterLeft/24)
+            
+        } else if counterLeft > 24 && counterLeft <= 48 {
+            
+            totalRotationsFastBF = (counterLeft-24)/12
             
         } else {
             
@@ -403,7 +418,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        intermediateBF = totalRotationsFastBF + totalRotationsSlowBF
+        intermediateBF = totalRotationsFastBF + totalRotationsSlowBF + totalRotationsMediumBF
     }
     
     
@@ -427,9 +442,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if !gamePaused{
                     
                     if node == rotateRight {
-
-                            let touchObj = touch as! UITouch
-                            selectedNodes[touchObj] = node!
                             
                             timerLeft.invalidate()
                             
@@ -440,19 +452,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             player.runAction(spinRightStart)
                             timerRight = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector: Selector("updateCounterRight"), userInfo: nil, repeats: true)
                         
-                        
-                        
                     } else if node == rotateLeft {
                     
-                        
                             timerRight.invalidate()
                             counterRight = 0
                             
                             println("spinLeft")
                         
-                        
-                        player.runAction(spinLeftStart)
-                        timerLeft = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector: Selector("updateCounterLeft"), userInfo: nil, repeats: true)
+                            player.runAction(spinLeftStart)
+                            timerLeft = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector: Selector("updateCounterLeft"), userInfo: nil, repeats: true)
                     
                     } else if tapToStartNode.containsPoint(location) {
 
@@ -571,35 +579,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             }
     
-    
-    
-    func createStarAtPosition(position: CGPoint, ofType type: StarType) -> StarNode {
 
-        let node = StarNode()
-        let thePosition = CGPoint(x: position.x * scaleFactor, y: position.y)
-        node.position = thePosition
-        node.name = "NODE_STAR"
-        node.starType = type
-        var sprite: SKSpriteNode!
-        
-        if type == .Special {
-            
-            sprite = SKSpriteNode(imageNamed: "starRed")
-            
-        } else {
-            
-            sprite = SKSpriteNode(imageNamed: "starYellow")
-            
-        }
-        
-        node.addChild(sprite)
-        node.physicsBody = SKPhysicsBody(circleOfRadius: sprite.size.width / 2)
-        node.physicsBody?.dynamic = false
-        node.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Star
-        node.physicsBody?.collisionBitMask = 0
-        node.physicsBody?.contactTestBitMask = 0
-        return node
-    }
+    
+    // MARK: Contact/Collision Stuff
     
     func didBeginContact(contact: SKPhysicsContact) {
         
@@ -615,12 +597,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if updateHUD {
             
             //collide with star
-            
+            starsConsumed += 1
             
             if let star = other as? StarNode {
                 
-                if star.starType == .Special {
+                if star.starType == StarType.Special {
+                    
                     endGame()
+
                 }
             }
             
@@ -642,32 +626,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 let π = CGFloat(M_PI)
                 radToDeg = (player.zRotation * 180.0)/π
-                checkColissionAngle()
+                checkCollisionAngle()
             }
         }
     }
     
-    func checkColissionAngle() {
+    func checkCollisionAngle() {
         
         if radToDeg >= 0 && radToDeg <= 15 || radToDeg <= 0 && radToDeg >= -15{
             
             perfectAngleAction()
-            println("perfect")
             
         } else if radToDeg > 15 && radToDeg <= 45 || radToDeg < -15 && radToDeg >= -45 {
             
             goodAngleAction()
-            println("good")
             
         } else if radToDeg > 45 && radToDeg < 155 || radToDeg < -45 && radToDeg > -155{
             
             badAngleAction()
-            println("bad")
             
         } else if radToDeg <= -155 && radToDeg >= -180 || radToDeg <= 180 && radToDeg >= 155{
             
             deadAngleAction()
-            println("dead")
         }
 
         
@@ -675,6 +655,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func perfectAngleAction() {
         
+        perfectJumpCount += 1
         
         if jumpCount == 0 {
             
@@ -690,7 +671,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             perfectJumpMultiplyer = perfectJumpMultiplyer + 1.0
             newVelocity = config.currentVelocity + (perfectJumpMultiplyer * config.perfectJumpMultiplyerValue)
             
-        }else{
+        } else {
             
             perfectJumpMultiplyer = 0
             newVelocity = config.currentVelocity
@@ -747,10 +728,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         intermediateBF = 0
         
     }
-    
 
-    
-    
+    // MARK: Create Stuff
     
     func createPlatformAtPosition(position: CGPoint, ofType type: PlatformType) -> PlatformNode {
 
@@ -774,6 +753,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         return node
     }
+    
+    func createStarAtPosition(position: CGPoint, ofType type: StarType) -> StarNode {
+        
+        let node = StarNode()
+        let thePosition = CGPoint(x: position.x * scaleFactor, y: position.y)
+        node.position = thePosition
+        node.name = "NODE_STAR"
+        node.starType = type
+        var sprite: SKSpriteNode!
+        
+        if type == .Special {
+            
+            sprite = SKSpriteNode(imageNamed: "starRed")
+            
+        } else {
+            
+            sprite = SKSpriteNode(imageNamed: "starYellow")
+            
+        }
+        
+        node.addChild(sprite)
+        node.physicsBody = SKPhysicsBody(circleOfRadius: sprite.size.width / 2)
+        node.physicsBody?.dynamic = false
+        node.physicsBody?.categoryBitMask = CollisionCategoryBitmask.Star
+        node.physicsBody?.collisionBitMask = 0
+        node.physicsBody?.contactTestBitMask = 0
+        return node
+    }
+
 
     /*
     func createMidgroundNode() -> SKNode {
@@ -809,6 +817,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return theMidgroundNode
     }
  */
+    
+    // MARK: Update
+    
     override func update(currentTime: NSTimeInterval) {
         
         //println("Psoition: \(player.position.y)")
@@ -820,13 +831,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if Int(player.position.y) > maxPlayerY {
             
-            GameState.sharedInstance.score += Int(player.position.y) - maxPlayerY
+            GameState.sharedInstance.recordHeight += Int(player.position.y) - maxPlayerY
             
             maxPlayerY = Int(player.position.y)
             
-            lblScore.text = String(format: "%d", GameState.sharedInstance.score)
+            lblHeight.text = String(maxPlayerY - 220)
 
         }
+        
+        // Calculate Score
+        GameState.sharedInstance.score = (maxPlayerY - 220) + (starsConsumed * 25) + (allRotations * 10) + (perfectJumpCount * 10)
+        
+        lblScore.text = String(format: "%d", GameState.sharedInstance.score)
         
             foregroundNode.enumerateChildNodesWithName("NODE_PLATFORM", usingBlock: {
             (node, stop) in
