@@ -18,6 +18,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var starsConsumed = 0
     var perfectJumpCount = 0
     var heightMarkery:CGFloat = 0
+    var starsTotal = 0
+    var jumpsInARow = 0
+    var starsTemp = 0
     
     // Layer Nodes
     var backgroundNode = SKNode()
@@ -94,7 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     // Coordinate of Top of Screen
-    let endLevelY = 99999
+    let endLevelY = 5000
     var maxPlayerY = 80 //iason
 
     // Get Screen Size
@@ -551,16 +554,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if updateHUD {
             
             //collide with star
-            starsConsumed += 1
+            
             
             if let star = other as? StarNode {
+                
+                starsConsumed += 1
+                
                 
                 if star.starType == StarType.Special {
                     
                     endGame()
 
+                } else if star.starType == StarType.Normal {
+                    
+                    starsTotal -= 1
+                    
                 }
+                
+                if starsTotal == 0 {
+                    
+                    endGame()
+                    
+                }
+                
+                
             }
+            
             
             
         }
@@ -658,6 +677,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func bounceAfterJumpAction(){
         
+        
+        if starsTemp == starsTotal {
+            jumpsInARow += 1
+        }
+        
+        if jumpsInARow == 6 {
+            
+            endGame()
+            
+        }
         jumpCount = jumpCount + 1
         
         //Did user make any flips in current bounce
@@ -672,7 +701,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.velocity = CGVector(dx: player.physicsBody!.velocity.dx, dy: newVelocity)
         
         
-        
+        starsTemp = starsTotal
         config.currentVelocity = newVelocity
         totalRotationsSlowFF = 0
         totalRotationsFastFF = 0
@@ -778,6 +807,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             
             sprite = SKSpriteNode(imageNamed: "starYellow")
+            starsTotal += 1
             
         }
         

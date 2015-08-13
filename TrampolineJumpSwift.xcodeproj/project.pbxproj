@@ -137,6 +137,8 @@
 		18E733991A8E2EAD00EA655A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E733981A8E2EAD00EA655A /* GameKit.framework */; };
 		18E7339B1A8E372600EA655A /* GCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E7339A1A8E372600EA655A /* GCHelper.swift */; };
 		AA59362C1B773822005065B5 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA59362B1B773822005065B5 /* Chartboost.framework */; };
+		AAF612581B7C20CD00E47E87 /* btnSettings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */; };
+		AAF6125A1B7C20E200E47E87 /* btnSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612591B7C20E200E47E87 /* btnSettings.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,6 +287,8 @@
 		18E733981A8E2EAD00EA655A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		18E7339A1A8E372600EA655A /* GCHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCHelper.swift; sourceTree = "<group>"; };
 		AA59362B1B773822005065B5 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
+		AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSettings@3x.png"; sourceTree = "<group>"; };
+		AAF612591B7C20E200E47E87 /* btnSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSettings.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +364,8 @@
 		181F84611A900890003175AD /* non atlas */ = {
 			isa = PBXGroup;
 			children = (
+				AAF612591B7C20E200E47E87 /* btnSettings.png */,
+				AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */,
 				181F84621A900890003175AD /* Background.png */,
 				181F84631A900890003175AD /* Background01.png */,
 				181F84641A900890003175AD /* Background01@2x.png */,
@@ -487,8 +493,6 @@
 				18C982351A8BD27000D172C6 /* GameObjectNode.swift */,
 				18C982361A8BD27000D172C6 /* GameState.swift */,
 				18C9820E1A8BD20C00D172C6 /* GameScene.swift */,
-				18C982121A8BD20C00D172C6 /* Main.storyboard */,
-				18C982151A8BD20C00D172C6 /* Images.xcassets */,
 				18C982171A8BD20C00D172C6 /* LaunchScreen.xib */,
 				1841602C1A8EE07700104424 /* Frameworks */,
 				18C982081A8BD20C00D172C6 /* Supporting Files */,
@@ -500,6 +504,8 @@
 		18C982081A8BD20C00D172C6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18C982151A8BD20C00D172C6 /* Images.xcassets */,
+				18C982121A8BD20C00D172C6 /* Main.storyboard */,
 				18C982091A8BD20C00D172C6 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -624,6 +630,7 @@
 				181F84D21A900890003175AD /* Background04.png in Resources */,
 				181F84F31A900890003175AD /* Background20@2x.png in Resources */,
 				181F850F1A900890003175AD /* lblRotLeft@2x.png in Resources */,
+				AAF612581B7C20CD00E47E87 /* btnSettings@3x.png in Resources */,
 				181F84C41A900890003175AD /* Icon-Spotlight-40@3x.png in Resources */,
 				181F850A1A900890003175AD /* btnUnlock@3x.png in Resources */,
 				181F84DF1A900890003175AD /* Background10@2x.png in Resources */,
@@ -657,6 +664,7 @@
 				181F84B41A900890003175AD /* 6plus.png in Resources */,
 				181F84F61A900890003175AD /* btnGC@3x.png in Resources */,
 				181F84E51A900890003175AD /* Background13@2x.png in Resources */,
+				AAF6125A1B7C20E200E47E87 /* btnSettings.png in Resources */,
 				181F84E31A900890003175AD /* Background12@2x.png in Resources */,
 				181F84FC1A900890003175AD /* btnRestart@3x.png in Resources */,
 				181F85171A900890003175AD /* Platform~ipad.png in Resources */,

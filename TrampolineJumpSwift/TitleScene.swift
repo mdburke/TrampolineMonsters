@@ -63,7 +63,6 @@ class TitleScene: SKScene {
         restoreButt.position = CGPoint(x: xwidth/2, y: (restoreButt.size.height) + (gameCenterButt.position.y + spacer))
         upgradeButt.position = CGPoint(x: xwidth/2, y: (upgradeButt.size.height) + (restoreButt.position.y + spacer))
         startButt.position = CGPoint(x:xwidth/2, y: (startButt.size.height) + (upgradeButt.position.y + spacer))
-        
         logoImage.position = CGPoint(x: xwidth/2, y: self.size.height - (self.size.height / 8))
         
         foregroundNode.addChild(logoImage)
