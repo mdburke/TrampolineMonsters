@@ -14,7 +14,7 @@ class EndGameScene: SKScene {
         super.init(coder: aDecoder)
     }
     
-    let resumeButt = SKSpriteNode(imageNamed: "btnResume")
+    let restartButt = SKSpriteNode(imageNamed: "btnRestart")
     let quitButt = SKSpriteNode(imageNamed: "btnQuit")
 
     
@@ -48,10 +48,10 @@ class EndGameScene: SKScene {
         addChild(lblScore)
         
         quitButt.position = CGPoint(x: self.size.width / 2, y: 380)
-        resumeButt.position = CGPoint(x: self.size.width / 2, y: (quitButt.size.height) + (quitButt.position.y + 20))
+        restartButt.position = CGPoint(x: self.size.width / 2, y: (quitButt.size.height) + (quitButt.position.y + 20))
         
         addChild(quitButt)
-        addChild(resumeButt)
+        addChild(restartButt)
 
         
         let lblHighScore = SKLabelNode(fontNamed: gameFont)
@@ -78,7 +78,7 @@ class EndGameScene: SKScene {
             
             let location = touch.locationInNode(self)
 
-        if resumeButt.containsPoint(location){
+        if restartButt.containsPoint(location){
             
             let reveal = SKTransition.fadeWithDuration(0.5)
             let gameScene = GameScene(size: self.size)

@@ -888,7 +888,8 @@
 				INFOPLIST_FILE = TrampolineJumpSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mburke/Developer/Repositories/BabyBounce/TrampolineJumpSwift/TrampolineJumpSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrampolineJumpSwift/TrampolineJumpSwift-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -905,7 +906,8 @@
 				INFOPLIST_FILE = TrampolineJumpSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mburke/Developer/Repositories/BabyBounce/TrampolineJumpSwift/TrampolineJumpSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrampolineJumpSwift/TrampolineJumpSwift-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
