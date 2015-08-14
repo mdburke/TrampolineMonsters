@@ -35,16 +35,17 @@ class GameObjectNode: SKNode {
 class PlatformNode: GameObjectNode {
     var platformType: PlatformType!
     var platCollide = false
-    
     let TrampolineSound = SKAction.playSoundFileNamed("TrampolineSound.wav", waitForCompletion: false)
     
     override func collisionWithPlayer(player: SKNode) -> Bool {
         
-        runAction(TrampolineSound, completion: {
-            
-            
-        })
-
+        if volumeOn == true {
+            runAction(TrampolineSound, completion: {
+                
+                
+            })
+        }
+        
         if player.physicsBody?.velocity.dy < 0 {
             // 2
             player.physicsBody?.velocity = CGVector(dx: player.physicsBody!.velocity.dx, dy: 650.0)
@@ -61,20 +62,22 @@ class StarNode: GameObjectNode {
     
     override func collisionWithPlayer(player: SKNode) -> Bool {
 
-        
-        
         player.physicsBody?.velocity = CGVector(dx: player.physicsBody!.velocity.dx, dy: 400.0)
-        
-        runAction(starSound, completion: {
 
-            self.removeFromParent()
-        })
         
-        if starType == .Normal {
-            GameState.sharedInstance.score += 20
+        if volumeOn == true {
+            runAction(starSound, completion: {
+                
+                self.removeFromParent()
+
+            })
+        } else {
             
-            GameState.sharedInstance.allFlip += 1
+            self.removeFromParent()
+            
         }
+
+
         
         return true
     }

@@ -113,7 +113,6 @@
 		181F85161A900890003175AD /* Platform@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181F84AD1A900890003175AD /* Platform@3x.png */; };
 		181F85171A900890003175AD /* Platform~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 181F84AE1A900890003175AD /* Platform~ipad.png */; };
 		181F85181A900890003175AD /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 181F84AF1A900890003175AD /* sprites.atlas */; };
-		1841602F1A8EE1D000104424 /* StarSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1841602D1A8EE1D000104424 /* StarSound.wav */; };
 		184160301A8EE1D000104424 /* TrampolineSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1841602E1A8EE1D000104424 /* TrampolineSound.wav */; };
 		18526B461A99F8B500A0B3CF /* lockedOverlaythumb~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 18526B441A99F8B500A0B3CF /* lockedOverlaythumb~ipad.png */; };
 		18526B471A99F8B500A0B3CF /* lockedOverlaythumb~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 18526B451A99F8B500A0B3CF /* lockedOverlaythumb~iphone.png */; };
@@ -136,6 +135,8 @@
 		18C982A01A8BD49000D172C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C9829F1A8BD49000D172C6 /* UIKit.framework */; };
 		18E733991A8E2EAD00EA655A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E733981A8E2EAD00EA655A /* GameKit.framework */; };
 		18E7339B1A8E372600EA655A /* GCHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E7339A1A8E372600EA655A /* GCHelper.swift */; };
+		AA18C2A41B7D5BC500845311 /* SoundOff.png in Resources */ = {isa = PBXBuildFile; fileRef = AA18C2A31B7D5BC500845311 /* SoundOff.png */; };
+		AA5570981B7D62BA00E506CC /* StarSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1841602D1A8EE1D000104424 /* StarSound.wav */; };
 		AA59362C1B773822005065B5 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA59362B1B773822005065B5 /* Chartboost.framework */; };
 		AAF612581B7C20CD00E47E87 /* btnSettings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */; };
 		AAF6125A1B7C20E200E47E87 /* btnSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612591B7C20E200E47E87 /* btnSettings.png */; };
@@ -286,6 +287,7 @@
 		18C9829F1A8BD49000D172C6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		18E733981A8E2EAD00EA655A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		18E7339A1A8E372600EA655A /* GCHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCHelper.swift; sourceTree = "<group>"; };
+		AA18C2A31B7D5BC500845311 /* SoundOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SoundOff.png; path = ../SoundOff.png; sourceTree = "<group>"; };
 		AA59362B1B773822005065B5 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
 		AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSettings@3x.png"; sourceTree = "<group>"; };
 		AAF612591B7C20E200E47E87 /* btnSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSettings.png; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 		181F84441A900890003175AD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AA18C2A31B7D5BC500845311 /* SoundOff.png */,
 				18526B441A99F8B500A0B3CF /* lockedOverlaythumb~ipad.png */,
 				18526B451A99F8B500A0B3CF /* lockedOverlaythumb~iphone.png */,
 				181F84451A900890003175AD /* icoSS */,
@@ -633,6 +636,7 @@
 				AAF612581B7C20CD00E47E87 /* btnSettings@3x.png in Resources */,
 				181F84C41A900890003175AD /* Icon-Spotlight-40@3x.png in Resources */,
 				181F850A1A900890003175AD /* btnUnlock@3x.png in Resources */,
+				AA5570981B7D62BA00E506CC /* StarSound.wav in Resources */,
 				181F84DF1A900890003175AD /* Background10@2x.png in Resources */,
 				18C982191A8BD20C00D172C6 /* LaunchScreen.xib in Resources */,
 				181F84D31A900890003175AD /* Background04@2x.png in Resources */,
@@ -658,7 +662,6 @@
 				181F84E91A900890003175AD /* Background15@2x.png in Resources */,
 				181F84E41A900890003175AD /* Background13.png in Resources */,
 				181F84C71A900890003175AD /* ipad.png in Resources */,
-				1841602F1A8EE1D000104424 /* StarSound.wav in Resources */,
 				181F84D61A900890003175AD /* Background06.png in Resources */,
 				181F84EE1A900890003175AD /* Background18.png in Resources */,
 				181F84B41A900890003175AD /* 6plus.png in Resources */,
@@ -728,6 +731,7 @@
 				181F84D01A900890003175AD /* Background03.png in Resources */,
 				181F85051A900890003175AD /* btnStart@2x.png in Resources */,
 				181F84E11A900890003175AD /* Background11@2x.png in Resources */,
+				AA18C2A41B7D5BC500845311 /* SoundOff.png in Resources */,
 				181F84FA1A900890003175AD /* btnQuit@3x.png in Resources */,
 				181F84C81A900890003175AD /* ipad2x.png in Resources */,
 				181F84BD1A900890003175AD /* Icon-Small-50.png in Resources */,

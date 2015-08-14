@@ -8,10 +8,13 @@
 
 import SpriteKit
 
+var volumeOn = true
+
 class TitleScene: SKScene {
     
     var backgroundNode = SKNode()
     var foregroundNode = SKNode()
+    
     
     // Scale Factor
     var scaleFactor: CGFloat = 0.0
@@ -22,6 +25,7 @@ class TitleScene: SKScene {
     let restoreButt = SKSpriteNode(imageNamed: "btnRestore")
     let gameCenterButt = SKSpriteNode(imageNamed: "btnGC")
     let overlayButt = SKSpriteNode(imageNamed: "lockedOverlaythumb")
+    let volumeButt = SKSpriteNode(imageNamed: "SoundOff")
     
     // Logo
     let logoImage = SKSpriteNode(imageNamed: "imgStart")
@@ -64,7 +68,12 @@ class TitleScene: SKScene {
         upgradeButt.position = CGPoint(x: xwidth/2, y: (upgradeButt.size.height) + (restoreButt.position.y + spacer))
         startButt.position = CGPoint(x:xwidth/2, y: (startButt.size.height) + (upgradeButt.position.y + spacer))
         logoImage.position = CGPoint(x: xwidth/2, y: self.size.height - (self.size.height / 8))
+        volumeButt.position = CGPoint(x: xwidth/6, y: gameCenterButt.position.y)
+        volumeButt.size.height = startButt.size.height/1.5
+        volumeButt.size.width = startButt.size.width/3
         
+        
+        foregroundNode.addChild(volumeButt)
         foregroundNode.addChild(logoImage)
         foregroundNode.addChild(gameCenterButt)
         foregroundNode.addChild(restoreButt)
@@ -172,6 +181,21 @@ class TitleScene: SKScene {
         return backgroundNode
     }
     
+    func volumeButton() {
+        
+        if volumeOn == true {
+            
+            volumeOn = false
+            println("volumeOn = false")
+            
+        } else if volumeOn == false {
+            
+            volumeOn = true
+            println("volumeOn = true")
+            
+        }
+        
+    }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
@@ -222,9 +246,17 @@ class TitleScene: SKScene {
                 
                 FunkyPiDevIAP.sharedInstance.buyIAP()
                 
+            } else if volumeButt.containsPoint(location){
+                
+                volumeButton()
+                
+            }
+                
+                
+                
             }
 
         }
     }
     
-}
+
