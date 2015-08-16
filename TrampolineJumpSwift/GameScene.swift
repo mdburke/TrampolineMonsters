@@ -9,6 +9,7 @@
 import SpriteKit
 import CoreMotion
 import GameKit
+import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -119,7 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override init(size: CGSize) {
         super.init(size: size)
         
-        backgroundColor = SKColor.blueColor()
+        backgroundColor = SKColor.blackColor()
         scaleFactor = self.size.width / 320.0
         
         
@@ -162,9 +163,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Add the platforms
         let platform = createPlatformAtPosition(CGPoint(x: xwidth/2, y: 320), ofType: .Normal)
-        let platform2 = createPlatformAtPosition(CGPoint(x: xwidth/2, y: 2000), ofType: .Normal)
+        //let platform2 = createPlatformAtPosition(CGPoint(x: xwidth/2, y: 2000), ofType: .Normal)
         foregroundNode.addChild(platform)
-        foregroundNode.addChild(platform2)
+       // foregroundNode.addChild(platform2)
     
         // Add the stars
         let stars = levelData["Stars"] as! NSDictionary
@@ -291,6 +292,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         config.currentVelocity = config.startVelocity
         jumpCount = 0
     
+        
     }
     
     
@@ -780,7 +782,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
    
         sprite = SKSpriteNode(imageNamed: "Platform")
-            
+        sprite.size = CGSize(width: sprite.size.width * scaleFactor, height: sprite.size.height * scaleFactor)
         
         node.addChild(sprite)
         node.physicsBody = SKPhysicsBody(rectangleOfSize: sprite.size)
@@ -954,7 +956,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         btnPause.removeFromParent()
         let reveal = SKTransition.fadeWithDuration(0.5)
         let endGameScene = EndGameScene(size: self.size)
-        self.view!.presentScene(endGameScene, transition: reveal)
+        
+        let scaleAction:SKAction = SKAction.scaleTo(0.2, duration: 3)
+        let fadeAction:SKAction = SKAction.fadeAlphaTo(0, duration:3)
+        let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI * 12), duration: 3)
+        let group:SKAction = SKAction.group([scaleAction, fadeAction, rotateAction])
+        
+        let transition = SKTransition.doorsCloseHorizontalWithDuration(1.5)
+        self.view!.presentScene(endGameScene, transition: transition)
+
+
         
     }
 }

@@ -50,7 +50,7 @@ class TitleScene: SKScene {
         super.init(size: size)
         
         // Background
-        backgroundColor = SKColor.blueColor()
+        backgroundColor = SKColor.blackColor()
         scaleFactor = self.size.width / 320.0
         backgroundNode = createBackgroundNode()
         backgroundNode.position = CGPoint(x: 0.0, y: 0.0)
@@ -68,9 +68,9 @@ class TitleScene: SKScene {
         upgradeButt.position = CGPoint(x: xwidth/2, y: (upgradeButt.size.height) + (restoreButt.position.y + spacer))
         startButt.position = CGPoint(x:xwidth/2, y: (startButt.size.height) + (upgradeButt.position.y + spacer))
         logoImage.position = CGPoint(x: xwidth/2, y: self.size.height - (self.size.height / 8))
-        volumeButt.position = CGPoint(x: xwidth/6, y: gameCenterButt.position.y)
-        volumeButt.size.height = startButt.size.height/1.5
-        volumeButt.size.width = startButt.size.width/3
+        volumeButt.position = CGPoint(x: (gameCenterButt.position.x - gameCenterButt.size.width/2) / 2, y: gameCenterButt.position.y)
+        volumeButt.size.height = self.size.height/14
+        volumeButt.size.width = self.size.width/6
         
         
         foregroundNode.addChild(volumeButt)

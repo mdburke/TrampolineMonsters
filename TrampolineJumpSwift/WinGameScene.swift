@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class EndGameScene: SKScene {
+class WinGameScene: SKScene {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -16,8 +16,8 @@ class EndGameScene: SKScene {
     
     let restartButt = SKSpriteNode(imageNamed: "btnRestart")
     let quitButt = SKSpriteNode(imageNamed: "btnQuit")
-
-
+    
+    
     
     override init(size: CGSize) {
         super.init(size: size)
@@ -28,17 +28,17 @@ class EndGameScene: SKScene {
         
         let gameFont = "AppleSDGothicNeo-Bold"
         
-//        let star = SKSpriteNode(imageNamed: "lblAllRot")
-//        star.position = CGPoint(x: 25, y: self.size.height-30)
-//        addChild(star)
-//        
-//        let lblStars = SKLabelNode(fontNamed: gameFont)
-//        lblStars.fontSize = 30
-//        lblStars.fontColor = SKColor.whiteColor()
-//        lblStars.position = CGPoint(x: 50, y: self.size.height-40)
-//        lblStars.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-//        lblStars.text = String(format: "X %d", GameState.sharedInstance.allFlip)
-//        addChild(lblStars)
+        //        let star = SKSpriteNode(imageNamed: "lblAllRot")
+        //        star.position = CGPoint(x: 25, y: self.size.height-30)
+        //        addChild(star)
+        //
+        //        let lblStars = SKLabelNode(fontNamed: gameFont)
+        //        lblStars.fontSize = 30
+        //        lblStars.fontColor = SKColor.whiteColor()
+        //        lblStars.position = CGPoint(x: 50, y: self.size.height-40)
+        //        lblStars.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        //        lblStars.text = String(format: "X %d", GameState.sharedInstance.allFlip)
+        //        addChild(lblStars)
         
         let lblScore = SKLabelNode(fontNamed: gameFont)
         lblScore.fontSize = 40
@@ -51,11 +51,11 @@ class EndGameScene: SKScene {
         
         restartButt.position = CGPoint(x: self.size.width / 2, y: self.size.height/2.2)
         quitButt.position = CGPoint(x: self.size.width / 2, y: restartButt.position.y - 80)
-
+        
         
         addChild(quitButt)
         addChild(restartButt)
-
+        
         
         let lblHighScore = SKLabelNode(fontNamed: gameFont)
         lblHighScore.fontSize = 30
@@ -80,33 +80,33 @@ class EndGameScene: SKScene {
         
         if volumeOn == true {
             runAction(wompWomp, completion: { () -> Void in
-            
+                
             })
         }
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-      
+        
         for touch: AnyObject in touches {
             
             let location = touch.locationInNode(self)
-
-        if restartButt.containsPoint(location){
             
-            let reveal = SKTransition.fadeWithDuration(0.5)
-            let gameScene = GameScene(size: self.size)
-            self.view!.presentScene(gameScene, transition: reveal)
+            if restartButt.containsPoint(location){
+                
+                let reveal = SKTransition.fadeWithDuration(0.5)
+                let gameScene = GameScene(size: self.size)
+                self.view!.presentScene(gameScene, transition: reveal)
+                
+                
+            }else if quitButt.containsPoint(location){
+                
+                
+                let reveal = SKTransition.fadeWithDuration(0.5)
+                let titleScene = TitleScene(size: self.size)
+                self.view!.presentScene(titleScene, transition: reveal)
+            }
             
-            
-        }else if quitButt.containsPoint(location){
-
-            
-            let reveal = SKTransition.fadeWithDuration(0.5)
-            let titleScene = TitleScene(size: self.size)
-            self.view!.presentScene(titleScene, transition: reveal)
         }
-
-        }
-}
+    }
     
 }
