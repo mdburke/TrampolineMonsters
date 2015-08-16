@@ -25,7 +25,7 @@ class TitleScene: SKScene {
     let restoreButt = SKSpriteNode(imageNamed: "btnRestore")
     let gameCenterButt = SKSpriteNode(imageNamed: "btnGC")
     let overlayButt = SKSpriteNode(imageNamed: "lockedOverlaythumb")
-    let volumeButt = SKSpriteNode(imageNamed: "SoundOff")
+    let volumeButt = SKSpriteNode(imageNamed: "SoundOn")
     
     // Logo
     let logoImage = SKSpriteNode(imageNamed: "imgStart")
@@ -49,6 +49,8 @@ class TitleScene: SKScene {
     override init(size: CGSize) {
         super.init(size: size)
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
         // Background
         backgroundColor = SKColor.blackColor()
         scaleFactor = self.size.width / 320.0
@@ -62,6 +64,19 @@ class TitleScene: SKScene {
         
         //Buttons
         var spacer = xheight / startButt.size.height
+
+        if let volumeOn = defaults.valueForKey("volumeOn") as? Bool {
+        
+            if volumeOn == true {
+                
+                volumeButt.texture = SKTexture(imageNamed: "SoundOn")
+                
+            } else {
+                
+                volumeButt.texture = SKTexture(imageNamed: "SoundOff")
+                
+            }
+        }
         
         gameCenterButt.position = CGPoint(x: xwidth/2, y: 40)
         restoreButt.position = CGPoint(x: xwidth/2, y: (restoreButt.size.height) + (gameCenterButt.position.y + spacer))
@@ -69,8 +84,8 @@ class TitleScene: SKScene {
         startButt.position = CGPoint(x:xwidth/2, y: (startButt.size.height) + (upgradeButt.position.y + spacer))
         logoImage.position = CGPoint(x: xwidth/2, y: self.size.height - (self.size.height / 8))
         volumeButt.position = CGPoint(x: (gameCenterButt.position.x - gameCenterButt.size.width/2) / 2, y: gameCenterButt.position.y)
-        volumeButt.size.height = self.size.height/14
-        volumeButt.size.width = self.size.width/6
+        volumeButt.size.height = self.size.width/7
+        volumeButt.size.width = self.size.width/7
         
         
         foregroundNode.addChild(volumeButt)
@@ -91,7 +106,7 @@ class TitleScene: SKScene {
         foregroundNode.addChild(goRight)
         foregroundNode.addChild(charImage)
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        
         unlocked = defaults.boolForKey("unlockedKey")
 
         
@@ -186,12 +201,12 @@ class TitleScene: SKScene {
         if volumeOn == true {
             
             volumeOn = false
-            println("volumeOn = false")
+            volumeButt.texture = SKTexture(imageNamed: "SoundOff")
             
         } else if volumeOn == false {
             
             volumeOn = true
-            println("volumeOn = true")
+            volumeButt.texture = SKTexture(imageNamed: "SoundOn")
             
         }
         

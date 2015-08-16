@@ -34,6 +34,7 @@ class GameState {
         highScore = defaults.integerForKey("highScore")
         allFlip = defaults.integerForKey("allFlip")
         recordHeight = defaults.integerForKey("recordHeight")
+        volumeOn = defaults.boolForKey("volumeOn")
     }
     
     func saveState() {
@@ -44,6 +45,7 @@ class GameState {
         defaults.setInteger(highScore, forKey: "highScore")
         defaults.setInteger(allFlip, forKey: "allFlip")
         defaults.setInteger(recordHeight, forKey: "recordHeight")
+        defaults.setBool(volumeOn, forKey: "volumeOn")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
