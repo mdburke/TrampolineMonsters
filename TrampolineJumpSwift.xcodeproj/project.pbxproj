@@ -141,8 +141,10 @@
 		AA0616A51B803A3000A5F708 /* WinGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0616A41B803A3000A5F708 /* WinGameScene.swift */; };
 		AA2840261B8540C2003BD679 /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2840251B8540C2003BD679 /* stars.png */; };
 		AA2840281B854116003BD679 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2840271B854116003BD679 /* house.png */; };
+		AA5050771B91737600124351 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA5050761B91737600124351 /* 2.jpg */; };
 		AA5570981B7D62BA00E506CC /* StarSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1841602D1A8EE1D000104424 /* StarSound.wav */; };
 		AA59362C1B773822005065B5 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA59362B1B773822005065B5 /* Chartboost.framework */; };
+		AA9AC16F1B921B3400F91C86 /* InstructionsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC16E1B921B3400F91C86 /* InstructionsScene.swift */; };
 		AAAFA7381B85575B00316A28 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AAAFA7371B85575B00316A28 /* Logo.png */; };
 		AAF612581B7C20CD00E47E87 /* btnSettings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */; };
 		AAF6125A1B7C20E200E47E87 /* btnSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612591B7C20E200E47E87 /* btnSettings.png */; };
@@ -299,7 +301,9 @@
 		AA0616A41B803A3000A5F708 /* WinGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinGameScene.swift; sourceTree = "<group>"; };
 		AA2840251B8540C2003BD679 /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars.png; path = ../stars.png; sourceTree = "<group>"; };
 		AA2840271B854116003BD679 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
+		AA5050761B91737600124351 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		AA59362B1B773822005065B5 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
+		AA9AC16E1B921B3400F91C86 /* InstructionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsScene.swift; sourceTree = "<group>"; };
 		AAAFA7371B85575B00316A28 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSettings@3x.png"; sourceTree = "<group>"; };
 		AAF612591B7C20E200E47E87 /* btnSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSettings.png; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				AAAFA7371B85575B00316A28 /* Logo.png */,
+				AA5050761B91737600124351 /* 2.jpg */,
 				AA2840271B854116003BD679 /* house.png */,
 				AA2840251B8540C2003BD679 /* stars.png */,
 				5CA330541B80D68C00F70C42 /* SoundOff.png */,
@@ -506,6 +511,7 @@
 				18E7339A1A8E372600EA655A /* GCHelper.swift */,
 				189EF1F01A8E653D00308E6D /* FunkyPiDevIAP.swift */,
 				188E996E1A8D261D00C52A89 /* TitleScene.swift */,
+				AA9AC16E1B921B3400F91C86 /* InstructionsScene.swift */,
 				18C9820A1A8BD20C00D172C6 /* AppDelegate.swift */,
 				18C982101A8BD20C00D172C6 /* GameViewController.swift */,
 				18C982341A8BD27000D172C6 /* EndGameScene.swift */,
@@ -524,8 +530,8 @@
 		18C982081A8BD20C00D172C6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				18C982151A8BD20C00D172C6 /* Images.xcassets */,
 				18C982121A8BD20C00D172C6 /* Main.storyboard */,
+				18C982151A8BD20C00D172C6 /* Images.xcassets */,
 				18C982091A8BD20C00D172C6 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -696,6 +702,7 @@
 				181F84C51A900890003175AD /* Icon.png in Resources */,
 				181F85111A900890003175AD /* lblRotRight@2x.png in Resources */,
 				181F84C91A900890003175AD /* iTunesArtwork in Resources */,
+				AA5050771B91737600124351 /* 2.jpg in Resources */,
 				181F84EA1A900890003175AD /* Background16.png in Resources */,
 				181F85011A900890003175AD /* btnRotLeft@2x.png in Resources */,
 				181F84CD1A900890003175AD /* Background01@2x.png in Resources */,
@@ -789,6 +796,7 @@
 				18C9820F1A8BD20C00D172C6 /* GameScene.swift in Sources */,
 				AA0616A51B803A3000A5F708 /* WinGameScene.swift in Sources */,
 				18C982391A8BD27000D172C6 /* GameState.swift in Sources */,
+				AA9AC16F1B921B3400F91C86 /* InstructionsScene.swift in Sources */,
 				18C982111A8BD20C00D172C6 /* GameViewController.swift in Sources */,
 				18C9820B1A8BD20C00D172C6 /* AppDelegate.swift in Sources */,
 			);

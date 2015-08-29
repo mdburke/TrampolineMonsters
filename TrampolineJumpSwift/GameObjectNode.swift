@@ -62,8 +62,15 @@ class StarNode: GameObjectNode {
     
     override func collisionWithPlayer(player: SKNode) -> Bool {
 
-        player.physicsBody?.velocity = CGVector(dx: player.physicsBody!.velocity.dx, dy: 400.0)
-
+        if player.physicsBody?.velocity.dy < 400 {
+            
+            player.physicsBody?.velocity.dy = 400
+            
+        } else {
+            
+            player.physicsBody?.velocity = CGVector(dx: player.physicsBody!.velocity.dx, dy: player.physicsBody!.velocity.dy + 10)
+            
+        }
         
         if volumeOn == true {
             runAction(starSound, completion: {

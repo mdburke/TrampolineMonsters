@@ -323,6 +323,28 @@
 	<dict>
 		<key>Patterns</key>
 		<dict>
+			<key>SingleGoodStar</key>
+			<array>
+				<dict>
+					<key>x</key>
+					<string>0</string>
+					<key>y</key>
+					<string>0</string>
+					<key>type</key>
+					<string>0</string>
+				</dict>
+			</array>
+			<key>SingleBadStar</key>
+			<array>
+				<dict>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<string>0</string>
+					<key>type</key>
+					<string>1</string>
+				</dict>
+			</array>
 			<key>Cross</key>
 			<array>
 				<dict>
@@ -1107,6 +1129,46 @@
 		</dict>
 		<key>Positions</key>
 		<array>
+			<dict>
+				<key>pattern</key>
+				<string>Diamond</string>
+				<key>x</key>
+				<string>175</string>
+				<key>y</key>
+				<string>7400</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>CrossHard</string>
+				<key>x</key>
+				<string>70</string>
+				<key>y</key>
+				<string>7150</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>DoubleLineLeft</string>
+				<key>x</key>
+				<string>100</string>
+				<key>y</key>
+				<string>6300</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>DoubleLineRightHard</string>
+				<key>x</key>
+				<string>180</string>
+				<key>y</key>
+				<string>5400</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>CrossHard</string>
+				<key>x</key>
+				<string>80</string>
+				<key>y</key>
+				<string>5200</string>
+			</dict>
 			<dict>
 				<key>pattern</key>
 				<string>Diamond</string>

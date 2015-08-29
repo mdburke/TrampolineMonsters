@@ -22,6 +22,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var starsTotal = 0
     var jumpsInARow = 0
     var starsTemp = 0
+    var perfectJumpFloat = CGFloat(0.0)
+    
     
     // Layer Nodes
     var backgroundNode = SKNode()
@@ -98,7 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     // Coordinate of Top of Screen
-    let endLevelY = 5000
+    let endLevelY = 8000
     var maxPlayerY = 80 //iason
 
     // Get Screen Size
@@ -207,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lblMaxJumpHeightMarker = SKLabelNode(fontNamed: config.gameFont)
         lblMaxJumpHeightMarker.fontSize = 30
         lblMaxJumpHeightMarker.fontColor = SKColor.whiteColor()
-        lblMaxJumpHeightMarker.position = CGPoint(x: xwidth/2, y: heightMarkery)
+        lblMaxJumpHeightMarker.position = CGPoint(x: CGFloat(xwidth/2), y: CGFloat(endLevelY))
         lblMaxJumpHeightMarker.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
         lblMaxJumpHeightMarker.text = config.heightMarkerText
         foregroundNode.addChild(lblMaxJumpHeightMarker)
@@ -247,13 +249,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hudNode.addChild(lblBF)
         
         // Height
-        lblHeight = SKLabelNode(fontNamed: config.gameFont)
-        lblHeight.fontSize = 30
-        lblHeight.fontColor = SKColor.whiteColor()
-        lblHeight.position = CGPoint(x: self.size.width-20, y: 40)
-        lblHeight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-        lblHeight.text = "0"
-        hudNode.addChild(lblHeight)
+//        lblHeight = SKLabelNode(fontNamed: config.gameFont)
+//        lblHeight.fontSize = 30
+//        lblHeight.fontColor = SKColor.whiteColor()
+//        lblHeight.position = CGPoint(x: self.size.width-20, y: 40)
+//        lblHeight.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+//        lblHeight.text = "0"
+//        hudNode.addChild(lblHeight)
 
         // Score
         lblScore = SKLabelNode(fontNamed: config.gameFont)
@@ -285,17 +287,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        
         
     }
-    
+
+    // MARK: didMoveToView
     override func didMoveToView(view: SKView) {
     
         player.physicsBody?.velocity = CGVector(dx: player.physicsBody!.velocity.dx, dy:config.startVelocity)
         config.currentVelocity = config.startVelocity
         jumpCount = 0
-    
         
     }
-    
-    
    
     // MARK: Update Counters
 
@@ -336,7 +336,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             totalRotationsFastFF = (counterRight-40)/5
             
         }
-        
         
         intermediateFF = totalRotationsFastFF + totalRotationsSlowFF + totalRotationsMediumFF
 
@@ -532,11 +531,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func pauseTheGame() {
-        println("PRESSED PAUSE")
+
             gamePaused = true
             self.view!.paused = true
 
-            }
+    }
     
 
     
@@ -608,11 +607,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func checkCollisionAngle() {
         
-        if radToDeg >= 0 && radToDeg <= 15 || radToDeg <= 0 && radToDeg >= -15{
+        if radToDeg >= 0 && radToDeg <= 20 || radToDeg <= 0 && radToDeg >= -20{
             
             perfectAngleAction()
             
-        } else if radToDeg > 15 && radToDeg <= 45 || radToDeg < -15 && radToDeg >= -45 {
+        } else if radToDeg > 20 && radToDeg <= 45 || radToDeg < -20 && radToDeg >= -45 {
             
             goodAngleAction()
             
@@ -643,12 +642,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if countRotSilent < allRotations{
         
-            perfectJumpMultiplyer = perfectJumpMultiplyer + 1.0
+            perfectJumpMultiplyer = perfectJumpMultiplyer + CGFloat((allRotations - countRotSilent)/5)
             newVelocity = config.currentVelocity + (perfectJumpMultiplyer * config.perfectJumpMultiplyerValue)
             
         } else {
             
-            perfectJumpMultiplyer = 0
+            perfectJumpMultiplyer = 1
             newVelocity = config.currentVelocity
         }
         
@@ -884,10 +883,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Calculate Score
-        GameState.sharedInstance.score = (maxPlayerY - 220) + (starsConsumed * 25) + (allRotations * 10) + (perfectJumpCount * 10)
+        GameState.sharedInstance.score = (maxPlayerY - 220) + (starsConsumed * 25) + (allRotations * 10) + (perfectJumpCount * 100)
         
         lblScore.text = String(format: "%d", GameState.sharedInstance.score)
-        heightMarkery = CGFloat(GameState.sharedInstance.recordHeight)
+        //heightMarkery = CGFloat(GameState.sharedInstance.recordHeight)
         
         foregroundNode.enumerateChildNodesWithName("NODE_PLATFORM", usingBlock: {
         (node, stop) in
@@ -903,7 +902,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         if player.position.y > 200.0 {
-            backgroundNode.position = CGPoint(x: 0.0, y: -((player.position.y - 200.0)/20))
+            backgroundNode.position = CGPoint(x: 0.0, y: -((player.position.y - 200.0)/10))
            // midgroundNode.position = CGPoint(x: 0.0, y: -((player.position.y - 200.0)/4))
             foregroundNode.position = CGPoint(x: 0.0, y: -(player.position.y - 200.0))
         }
@@ -1000,7 +999,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI * 12), duration: 3)
         let group:SKAction = SKAction.group([scaleAction, fadeAction, rotateAction])
         
-        let transition = SKTransition.doorsCloseHorizontalWithDuration(1.5)
+        let transition = SKTransition.fadeWithColor(UIColor.yellowColor(), duration: 1.5)
         self.view!.presentScene(endGameScene, transition: transition)
 
         

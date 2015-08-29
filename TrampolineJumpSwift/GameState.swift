@@ -15,6 +15,7 @@ class GameState {
     var highScore: Int
     var recordHeight: Int
     var allFlip: Int
+    var instructionsOn: Bool = true
 
     class var sharedInstance :GameState {
         struct Singleton {
@@ -35,6 +36,7 @@ class GameState {
         allFlip = defaults.integerForKey("allFlip")
         recordHeight = defaults.integerForKey("recordHeight")
         volumeOn = defaults.boolForKey("volumeOn")
+        instructionsOn = defaults.boolForKey("instructionsOn")
     }
     
     func saveState() {
@@ -46,6 +48,7 @@ class GameState {
         defaults.setInteger(allFlip, forKey: "allFlip")
         defaults.setInteger(recordHeight, forKey: "recordHeight")
         defaults.setBool(volumeOn, forKey: "volumeOn")
+        defaults.setBool(instructionsOn, forKey: "instructionsOn")
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     

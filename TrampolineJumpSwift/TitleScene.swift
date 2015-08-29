@@ -9,6 +9,7 @@
 import SpriteKit
 
 var volumeOn = true
+var instructionsOn = true
 
 class TitleScene: SKScene {
     
@@ -112,7 +113,6 @@ class TitleScene: SKScene {
 
         
     }
-    
     
     func charLeft(){
         println("CHAR: \(pCount)")
@@ -221,9 +221,22 @@ class TitleScene: SKScene {
             
             if startButt.containsPoint(location) {
                 
-                let reveal = SKTransition.fadeWithDuration(0.5)
-                let gameScene = GameScene(size: self.size)
-                self.view!.presentScene(gameScene, transition: reveal)
+                
+                if instructionsOn == false {
+                    
+                    let reveal = SKTransition.fadeWithDuration(0.5)
+                    let gameScene = GameScene(size: self.size)
+                    self.view!.presentScene(gameScene, transition: reveal)
+                    
+                } else {
+                    
+                    let reveal = SKTransition.fadeWithDuration(0.5)
+                    //let newSize = CGSize(width: self.size.width/2, height: self.size.height/2)
+                    let instructionsScene = InstructionsScene(size: self.size)
+                    self.view!.presentScene(instructionsScene, transition: reveal)
+                    
+                }
+                
 
                 
             }else if upgradeButt.containsPoint(location) {
