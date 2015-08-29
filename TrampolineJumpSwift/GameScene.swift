@@ -162,7 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         // Add the platforms
-        let platform = createPlatformAtPosition(CGPoint(x: xwidth/2, y: 320), ofType: .Normal)
+        let platform = createPlatformAtPosition(CGPoint(x: xwidth/2, y: 200), ofType: .Normal)
         //let platform2 = createPlatformAtPosition(CGPoint(x: xwidth/2, y: 2000), ofType: .Normal)
         foregroundNode.addChild(platform)
        // foregroundNode.addChild(platform2)
@@ -752,20 +752,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let backgroundNode = SKNode()
         let ySpacing = 64.0 * scaleFactor
         
-        for index in 0...19 {
-            
-            let node = SKSpriteNode(imageNamed:String(format: "Background%02d", index + 1))
-            node.setScale(scaleFactor)
-            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-            node.position = CGPoint(x: self.size.width / 2, y: ySpacing * CGFloat(index))
-            backgroundNode.addChild(node)
-        }
+//        for index in 0...19 {
+//            
+//            let node = SKSpriteNode(imageNamed:String(format: "Background%02d", index + 1))
+//            node.setScale(scaleFactor)
+//            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//            node.position = CGPoint(x: self.size.width / 2, y: ySpacing * CGFloat(index))
+//            backgroundNode.addChild(node)
+//        }
         
-//        let node = SKSpriteNode(imageNamed: String(format: "Background"))
-//        node.setScale(scaleFactor)
-//        node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-//        node.position = CGPoint(x: self.size.width / 2, y: 0)
-//        backgroundNode.addChild(<#node: SKNode#>)
+        let node = SKSpriteNode(imageNamed: String(format: "Background"))
+        node.setScale(scaleFactor)
+        node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        node.position = CGPoint(x: self.size.width / 2, y: 0)
+        backgroundNode.addChild(node)
         
         return backgroundNode
     }
@@ -909,7 +909,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if Int(player.position.y) > endLevelY {
-            endGame()
+            winGame()
         }
         
         if Int(player.position.y) < 20 {
@@ -955,7 +955,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rotateRight.removeFromParent()
         btnPause.removeFromParent()
         let reveal = SKTransition.fadeWithDuration(0.5)
-        let endGameScene = EndGameScene(size: self.size)
+        let endGameScene = EndGameScene(size: self.size, didWin: false, allStars: false)
         
         let scaleAction:SKAction = SKAction.scaleTo(0.2, duration: 3)
         let fadeAction:SKAction = SKAction.fadeAlphaTo(0, duration:3)
@@ -965,6 +965,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let transition = SKTransition.doorsCloseHorizontalWithDuration(1.5)
         self.view!.presentScene(endGameScene, transition: transition)
 
+    }
+    
+    func winGame() {
+        
+        if GameState.sharedInstance.score > GameState.sharedInstance.highScore{
+            
+            GCHelper.sharedInstance.reportLeaderboardIdentifier(config.LeaderboardID, score: GameState.sharedInstance.score)
+            
+        }
+        
+        timerRight.invalidate()
+        timerLeft.invalidate()
+        gameOver = true
+        GameState.sharedInstance.saveState()
+        rotateLeft.removeFromParent()
+        rotateRight.removeFromParent()
+        btnPause.removeFromParent()
+        let reveal = SKTransition.fadeWithDuration(0.5)
+        var endGameScene = EndGameScene(size: self.size, didWin: false, allStars: false)
+        
+        if starsTotal == 0 {
+            
+            endGameScene = EndGameScene(size: self.size, didWin: true, allStars: true)
+            
+        } else {
+       
+            endGameScene = EndGameScene(size: self.size, didWin: true, allStars: false)
+   
+        }
+        
+        let scaleAction:SKAction = SKAction.scaleTo(0.2, duration: 3)
+        let fadeAction:SKAction = SKAction.fadeAlphaTo(0, duration:3)
+        let rotateAction = SKAction.rotateByAngle(CGFloat(M_PI * 12), duration: 3)
+        let group:SKAction = SKAction.group([scaleAction, fadeAction, rotateAction])
+        
+        let transition = SKTransition.doorsCloseHorizontalWithDuration(1.5)
+        self.view!.presentScene(endGameScene, transition: transition)
 
         
     }

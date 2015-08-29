@@ -28,7 +28,7 @@ class TitleScene: SKScene {
     let volumeButt = SKSpriteNode(imageNamed: "SoundOn")
     
     // Logo
-    let logoImage = SKSpriteNode(imageNamed: "imgStart")
+    let logoImage = SKSpriteNode(imageNamed: "Logo")
     
     // Get Screen Size
     var xheight = UIScreen.mainScreen().applicationFrame.size.height
@@ -83,6 +83,7 @@ class TitleScene: SKScene {
         upgradeButt.position = CGPoint(x: xwidth/2, y: (upgradeButt.size.height) + (restoreButt.position.y + spacer))
         startButt.position = CGPoint(x:xwidth/2, y: (startButt.size.height) + (upgradeButt.position.y + spacer))
         logoImage.position = CGPoint(x: xwidth/2, y: self.size.height - (self.size.height / 8))
+        logoImage.size = CGSize(width: xwidth, height: xheight/6)
         volumeButt.position = CGPoint(x: (gameCenterButt.position.x - gameCenterButt.size.width/2) / 2, y: gameCenterButt.position.y)
         volumeButt.size.height = self.size.width/7
         volumeButt.size.width = self.size.width/7
@@ -172,27 +173,28 @@ class TitleScene: SKScene {
             defaults.setInteger(pCount, forKey: "playerChoice")
         }
 
-
-        
-        
     }
 
-    
     
     func createBackgroundNode() -> SKNode {
         
         let backgroundNode = SKNode()
         let ySpacing = 64.0 * scaleFactor
         
-        for index in 0...19 {
-            
-            let node = SKSpriteNode(imageNamed:String(format: "Background%02d", index + 1))
-            node.setScale(scaleFactor)
-            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-            node.position = CGPoint(x: self.size.width / 2, y: ySpacing * CGFloat(index))
-            backgroundNode.addChild(node)
-        }
+//        for index in 0...19 {
+//            
+//            let node = SKSpriteNode(imageNamed:String(format: "Background%02d", index + 1))
+//            node.setScale(scaleFactor)
+//            node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+//            node.position = CGPoint(x: self.size.width / 2, y: ySpacing * CGFloat(index))
+//            backgroundNode.addChild(node)
+//        }
         
+        let node = SKSpriteNode(imageNamed: String(format: "house"))
+        node.setScale(scaleFactor/2)
+        node.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+        node.position = CGPoint(x: self.size.width / 2, y: 0)
+        backgroundNode.addChild(node)
         return backgroundNode
     }
     

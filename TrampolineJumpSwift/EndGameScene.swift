@@ -10,6 +10,10 @@ import SpriteKit
 
 class EndGameScene: SKScene {
     
+    var didWinVar:Bool?
+    var labelText:String?
+    var allStarsVar:Bool?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -71,6 +75,79 @@ class EndGameScene: SKScene {
         lblTryAgain.position = CGPoint(x: self.size.width / 2, y: self.size.height/1.4)
         lblTryAgain.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
         lblTryAgain.text = "GAME OVER"
+        addChild(lblTryAgain)
+        
+    }
+    
+    init(size: CGSize, didWin: Bool, allStars: Bool) {
+        super.init(size: size)
+        
+        didWinVar = didWin
+        allStarsVar = allStars
+        
+        //Ads
+        //AppDelegate.showChartboostAds()
+        
+        let gameFont = "AppleSDGothicNeo-Bold"
+        
+        let lblScore = SKLabelNode(fontNamed: gameFont)
+        lblScore.fontSize = 40
+        lblScore.fontColor = SKColor.whiteColor()
+        lblScore.position = CGPoint(x: self.size.width / 2, y: self.size.height/1.8)
+        lblScore.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        lblScore.text = String(format: "Score: %d", GameState.sharedInstance.score)
+        addChild(lblScore)
+        
+        
+        restartButt.position = CGPoint(x: self.size.width / 2, y: self.size.height/2.2)
+        quitButt.position = CGPoint(x: self.size.width / 2, y: restartButt.position.y - 80)
+        
+        
+        addChild(quitButt)
+        addChild(restartButt)
+        
+        
+        let lblHighScore = SKLabelNode(fontNamed: gameFont)
+        lblHighScore.fontSize = 30
+        lblHighScore.fontColor = SKColor.whiteColor()
+        lblHighScore.position = CGPoint(x: self.size.width / 2, y: self.size.height / 10)
+        lblHighScore.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        lblHighScore.text = String(format: "High Score: %d", GameState.sharedInstance.highScore)
+        addChild(lblHighScore)
+    
+        
+        let lblTryAgain = SKLabelNode(fontNamed: gameFont)
+        lblTryAgain.fontSize = 45
+        lblTryAgain.fontColor = SKColor.redColor()
+        lblTryAgain.position = CGPoint(x: self.size.width / 2, y: self.size.height/1.4)
+        lblTryAgain.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        
+        let lblTwo = SKLabelNode(fontNamed: gameFont)
+        lblTwo.fontSize = 25
+        lblTwo.fontColor = SKColor.redColor()
+        lblTwo.position = CGPoint(x: lblTryAgain.position.x, y: lblTryAgain.position.y - 35)
+        lblTwo.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        
+        if didWinVar! == true {
+            
+            labelText = "Good Job"
+            
+            if allStarsVar == true {
+                lblTwo.text = "You Won!"
+            } else {
+                lblTwo.text = "But you didn't get all the stars!"
+            }
+            
+            addChild(lblTwo)
+            
+        } else {
+            
+            labelText = "GAME OVER"
+            
+        }
+        
+        lblTryAgain.text = labelText!
+        
         addChild(lblTryAgain)
         
     }

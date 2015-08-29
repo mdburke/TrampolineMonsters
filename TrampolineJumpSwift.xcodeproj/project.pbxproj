@@ -139,8 +139,11 @@
 		5CA330571B80D69B00F70C42 /* SoundOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA330561B80D69B00F70C42 /* SoundOn.png */; };
 		AA0616A31B80170800A5F708 /* WompWomp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA0616A21B80170800A5F708 /* WompWomp.mp3 */; };
 		AA0616A51B803A3000A5F708 /* WinGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0616A41B803A3000A5F708 /* WinGameScene.swift */; };
+		AA2840261B8540C2003BD679 /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2840251B8540C2003BD679 /* stars.png */; };
+		AA2840281B854116003BD679 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2840271B854116003BD679 /* house.png */; };
 		AA5570981B7D62BA00E506CC /* StarSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1841602D1A8EE1D000104424 /* StarSound.wav */; };
 		AA59362C1B773822005065B5 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA59362B1B773822005065B5 /* Chartboost.framework */; };
+		AAAFA7381B85575B00316A28 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AAAFA7371B85575B00316A28 /* Logo.png */; };
 		AAF612581B7C20CD00E47E87 /* btnSettings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */; };
 		AAF6125A1B7C20E200E47E87 /* btnSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612591B7C20E200E47E87 /* btnSettings.png */; };
 /* End PBXBuildFile section */
@@ -294,7 +297,10 @@
 		5CA330561B80D69B00F70C42 /* SoundOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SoundOn.png; sourceTree = "<group>"; };
 		AA0616A21B80170800A5F708 /* WompWomp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WompWomp.mp3; sourceTree = "<group>"; };
 		AA0616A41B803A3000A5F708 /* WinGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinGameScene.swift; sourceTree = "<group>"; };
+		AA2840251B8540C2003BD679 /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars.png; path = ../stars.png; sourceTree = "<group>"; };
+		AA2840271B854116003BD679 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
 		AA59362B1B773822005065B5 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
+		AAAFA7371B85575B00316A28 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSettings@3x.png"; sourceTree = "<group>"; };
 		AAF612591B7C20E200E47E87 /* btnSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSettings.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -326,6 +332,9 @@
 		181F84441A900890003175AD /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AAAFA7371B85575B00316A28 /* Logo.png */,
+				AA2840271B854116003BD679 /* house.png */,
+				AA2840251B8540C2003BD679 /* stars.png */,
 				5CA330541B80D68C00F70C42 /* SoundOff.png */,
 				5CA330561B80D69B00F70C42 /* SoundOn.png */,
 				18526B441A99F8B500A0B3CF /* lockedOverlaythumb~ipad.png */,
@@ -673,6 +682,7 @@
 				181F84E91A900890003175AD /* Background15@2x.png in Resources */,
 				181F84E41A900890003175AD /* Background13.png in Resources */,
 				181F84C71A900890003175AD /* ipad.png in Resources */,
+				AAAFA7381B85575B00316A28 /* Logo.png in Resources */,
 				181F84D61A900890003175AD /* Background06.png in Resources */,
 				181F84EE1A900890003175AD /* Background18.png in Resources */,
 				181F84B41A900890003175AD /* 6plus.png in Resources */,
@@ -705,6 +715,7 @@
 				181F84BB1A900890003175AD /* Icon-76@2x.png in Resources */,
 				181F84D51A900890003175AD /* Background05@2x.png in Resources */,
 				181F84FB1A900890003175AD /* btnRestart@2x.png in Resources */,
+				AA2840261B8540C2003BD679 /* stars.png in Resources */,
 				181F84F41A900890003175AD /* Background@2x.png in Resources */,
 				181F85091A900890003175AD /* btnUnlock@2x.png in Resources */,
 				181F84B91A900890003175AD /* Icon-72@2x.png in Resources */,
@@ -744,6 +755,7 @@
 				181F85051A900890003175AD /* btnStart@2x.png in Resources */,
 				181F84E11A900890003175AD /* Background11@2x.png in Resources */,
 				181F84FA1A900890003175AD /* btnQuit@3x.png in Resources */,
+				AA2840281B854116003BD679 /* house.png in Resources */,
 				181F84C81A900890003175AD /* ipad2x.png in Resources */,
 				181F84BD1A900890003175AD /* Icon-Small-50.png in Resources */,
 				181F84CA1A900890003175AD /* iTunesArtwork@2x in Resources */,
