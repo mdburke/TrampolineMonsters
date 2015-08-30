@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChartboostDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let kChartboostAppID = "55c6fa3704b01609cf162a9f";
-        let kChartboostAppSignature = "69c342139fc6dcf76480a0ac5ed6f5e758a41741";
+        let kChartboostAppID = "55e26d32c909a60956897482";
+        let kChartboostAppSignature = "3679cf605989fd2aef9e31f5b3c2d881e3d78797";
         
         Chartboost.startWithAppId(kChartboostAppID, appSignature: kChartboostAppSignature, delegate: self);
         Chartboost.cacheMoreApps(CBLocationHomeScreen)
@@ -65,13 +65,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChartboostDelegate {
     
     class func showChartboostAds()
     {
+        
+        println("called chartboost")
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         var unlocked = defaults.boolForKey("unlockedKey")
-
+        println("\(unlocked)")
 
         if !unlocked{
             
-            Chartboost.showInterstitial(CBLocationHomeScreen);
+          //  Chartboost.showInterstitial(CBLocationHomeScreen);
         }
         
         

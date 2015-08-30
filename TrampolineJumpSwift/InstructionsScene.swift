@@ -25,7 +25,9 @@ class InstructionsScene: SKScene {
     var instructionLabel8 = SKLabelNode()
     var instructionLabel9 = SKLabelNode()
     var instructionLabel10 = SKLabelNode()
-    
+    var instructionLabel11 = SKLabelNode()
+    var instructionLabel12 = SKLabelNode()
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -35,7 +37,7 @@ class InstructionsScene: SKScene {
         
         scaleFactor = self.size.width / 60
         
-        backBackground.texture = SKTexture(imageNamed: "background.png")
+        backBackground.texture = SKTexture(imageNamed: "Background")
         backBackground.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         backBackground.size = CGSize(width: self.size.width, height: self.size.height)
         backBackground.setScale(scaleFactor/2)
@@ -45,12 +47,12 @@ class InstructionsScene: SKScene {
         
         background.texture = SKTexture(imageNamed: "2.jpg")
         background.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        background.size = CGSize(width: self.size.width / 1.2, height: self.size.height / 1.2)
+        background.size = CGSize(width: self.size.width, height: self.size.height)
         background.zPosition = 0
         background.alpha = 0.8
         self.addChild(background)
         
-        titleLabel.position = CGPoint(x: background.frame.midX, y: background.frame.maxY - 50)
+        titleLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 50)
         //titleLabel.size = CGSize(width: self.size.width / 2, height: 50)
         titleLabel.fontSize = 28
         titleLabel.fontColor = SKColor.blackColor()
@@ -59,73 +61,84 @@ class InstructionsScene: SKScene {
         titleLabel.fontName = config.gameFont
         self.addChild(titleLabel)
         
-        instructionLabel.position = CGPoint(x: background.frame.midX, y: titleLabel.position.y - 80)
+        instructionLabel.position = CGPoint(x: self.frame.midX, y: titleLabel.position.y - 60)
         instructionLabel.fontSize = 23
         instructionLabel.fontColor = SKColor.blackColor()
         instructionLabel.text = "Try to get all the stars before you"
         self.addChild(instructionLabel)
         
-        instructionLabel2.position = CGPoint(x: background.frame.midX, y: instructionLabel.position.y - 30)
+        instructionLabel2.position = CGPoint(x: self.frame.midX, y: instructionLabel.position.y - 30)
         instructionLabel2.fontSize = 23
         instructionLabel2.fontColor = SKColor.blackColor()
         instructionLabel2.text = "reach the top!"
         self.addChild(instructionLabel2)
         
-        instructionLabel3.position = CGPoint(x: background.frame.midX, y: instructionLabel2.position.y - 60)
+        instructionLabel3.position = CGPoint(x: self.frame.midX, y: instructionLabel2.position.y - 60)
         instructionLabel3.fontSize = 23
         instructionLabel3.fontColor = SKColor.blackColor()
         instructionLabel3.text = "More stars = more points!"
         self.addChild(instructionLabel3)
         
-        instructionLabel6.position = CGPoint(x: background.frame.midX, y: instructionLabel3.position.y - 30)
+        instructionLabel6.position = CGPoint(x: self.frame.midX, y: instructionLabel3.position.y - 30)
         instructionLabel6.fontSize = 23
         instructionLabel6.fontColor = SKColor.blackColor()
         instructionLabel6.text = "More spins = more points!"
         self.addChild(instructionLabel6)
         
-        instructionLabel7.position = CGPoint(x: background.frame.midX, y: instructionLabel6.position.y - 30)
+        instructionLabel7.position = CGPoint(x: self.frame.midX, y: instructionLabel6.position.y - 30)
         instructionLabel7.fontSize = 23
         instructionLabel7.fontColor = SKColor.blackColor()
         instructionLabel7.text = "Perfect Jumps on the trampoline"
         self.addChild(instructionLabel7)
         
-        instructionLabel8.position = CGPoint(x: background.frame.midX, y: instructionLabel7.position.y - 30)
+        instructionLabel8.position = CGPoint(x: self.frame.midX, y: instructionLabel7.position.y - 30)
         instructionLabel8.fontSize = 23
         instructionLabel8.fontColor = SKColor.blackColor()
         instructionLabel8.text = " = more points!"
         self.addChild(instructionLabel8)
         
-        instructionLabel4.position = CGPoint(x: background.frame.midX, y: instructionLabel8.position.y - 40)
+        instructionLabel4.position = CGPoint(x: self.frame.midX, y: instructionLabel8.position.y - 40)
         instructionLabel4.fontSize = 23
         instructionLabel4.fontColor = SKColor.blackColor()
         instructionLabel4.text = "Spin right to go up!"
         self.addChild(instructionLabel4)
         
-        instructionLabel5.position = CGPoint(x: background.frame.midX, y: instructionLabel4.position.y - 40)
+        instructionLabel5.position = CGPoint(x: self.frame.midX, y: instructionLabel4.position.y - 40)
         instructionLabel5.fontSize = 23
         instructionLabel5.fontColor = SKColor.blackColor()
         instructionLabel5.text = "Spin left to go down!"
         self.addChild(instructionLabel5)
         
-        instructionLabel10.position = CGPoint(x: background.frame.midX, y: instructionLabel5.position.y - 40)
+        instructionLabel10.position = CGPoint(x: self.frame.midX, y: instructionLabel5.position.y - 40)
         instructionLabel10.fontSize = 23
         instructionLabel10.fontColor = SKColor.blackColor()
         instructionLabel10.text = "More spins = higher jumps"
         self.addChild(instructionLabel10)
         
-        instructionLabel9.position = CGPoint(x: background.frame.midX, y: instructionLabel10.position.y - 80)
+        instructionLabel9.position = CGPoint(x: self.frame.midX, y: instructionLabel10.position.y - 60)
         instructionLabel9.fontSize = 23
         instructionLabel9.fontColor = SKColor.redColor()
         instructionLabel9.fontName = config.gameFont
         instructionLabel9.text = "DON'T HIT THE RED STARS!"
         self.addChild(instructionLabel9)
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        instructionsOn = false
-        defaults.setBool(instructionsOn, forKey: "instructionsOn")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        instructionLabel11.position = CGPoint(x: self.frame.midX, y: instructionLabel9.position.y - 40)
+        instructionLabel11.fontSize = 23
+        instructionLabel11.fontColor = SKColor.redColor()
+        instructionLabel11.fontName = config.gameFont
+        instructionLabel11.text = "LET GO BEFORE YOU"
+        self.addChild(instructionLabel11)
         
-    
+        instructionLabel12.position = CGPoint(x: self.frame.midX, y: instructionLabel11.position.y - 25)
+        instructionLabel12.fontSize = 23
+        instructionLabel12.fontColor = SKColor.redColor()
+        instructionLabel12.fontName = config.gameFont
+        instructionLabel12.text = "HIT THE TRAMPOLINE!"
+        self.addChild(instructionLabel12)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setBool(false, forKey: "instructionsOn")    
     }
     
     

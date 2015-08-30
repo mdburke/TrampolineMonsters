@@ -59,7 +59,7 @@ class FunkyPiDevIAP: NSObject, SKProductsRequestDelegate, SKPaymentTransactionOb
             var productsRequest:SKProductsRequest = SKProductsRequest(productIdentifiers: productID as Set<NSObject>);
             productsRequest.delegate = self;
             productsRequest.start();
-            println("Fething Products");
+            println("Fetching Products");
         }else{
             println("can't make purchases");
         }
@@ -132,19 +132,23 @@ class FunkyPiDevIAP: NSObject, SKProductsRequestDelegate, SKPaymentTransactionOb
                     let defaults = NSUserDefaults.standardUserDefaults()
                     //defaults.setObject(pCount, forKey: "playerChoice")
                     defaults.setBool(unlocked, forKey: "unlockedKey")
+                    
 
                     
                     SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
+                    actInd.stopAnimating()
                     break;
                 case .Failed:
                     println("Purchased Failed");
                     SKPaymentQueue.defaultQueue().finishTransaction(transaction as! SKPaymentTransaction)
+                    actInd.stopAnimating()
                     break;
                 case .Restored:
                     var unlocked = true
                     let defaults = NSUserDefaults.standardUserDefaults()
                     //defaults.setObject(pCount, forKey: "playerChoice")
                     defaults.setBool(unlocked, forKey: "unlockedKey")
+                    actInd.stopAnimating()
                     break;
                 default:
                     break;

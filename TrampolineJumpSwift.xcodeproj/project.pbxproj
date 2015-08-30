@@ -141,11 +141,12 @@
 		AA0616A51B803A3000A5F708 /* WinGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0616A41B803A3000A5F708 /* WinGameScene.swift */; };
 		AA2840261B8540C2003BD679 /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2840251B8540C2003BD679 /* stars.png */; };
 		AA2840281B854116003BD679 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2840271B854116003BD679 /* house.png */; };
+		AA2C509E1B92AAED00C84A3E /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C509D1B92AAED00C84A3E /* Chartboost.framework */; };
 		AA5050771B91737600124351 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA5050761B91737600124351 /* 2.jpg */; };
 		AA5570981B7D62BA00E506CC /* StarSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1841602D1A8EE1D000104424 /* StarSound.wav */; };
-		AA59362C1B773822005065B5 /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA59362B1B773822005065B5 /* Chartboost.framework */; };
 		AA9AC16F1B921B3400F91C86 /* InstructionsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9AC16E1B921B3400F91C86 /* InstructionsScene.swift */; };
 		AAAFA7381B85575B00316A28 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AAAFA7371B85575B00316A28 /* Logo.png */; };
+		AABB02BF1B92861E00F2A233 /* Win.wav in Resources */ = {isa = PBXBuildFile; fileRef = AABB02BE1B92861E00F2A233 /* Win.wav */; };
 		AAF612581B7C20CD00E47E87 /* btnSettings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */; };
 		AAF6125A1B7C20E200E47E87 /* btnSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = AAF612591B7C20E200E47E87 /* btnSettings.png */; };
 /* End PBXBuildFile section */
@@ -301,10 +302,11 @@
 		AA0616A41B803A3000A5F708 /* WinGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinGameScene.swift; sourceTree = "<group>"; };
 		AA2840251B8540C2003BD679 /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stars.png; path = ../stars.png; sourceTree = "<group>"; };
 		AA2840271B854116003BD679 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
+		AA2C509D1B92AAED00C84A3E /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
 		AA5050761B91737600124351 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		AA59362B1B773822005065B5 /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
 		AA9AC16E1B921B3400F91C86 /* InstructionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsScene.swift; sourceTree = "<group>"; };
 		AAAFA7371B85575B00316A28 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
+		AABB02BE1B92861E00F2A233 /* Win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Win.wav; sourceTree = "<group>"; };
 		AAF612571B7C20CD00E47E87 /* btnSettings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnSettings@3x.png"; sourceTree = "<group>"; };
 		AAF612591B7C20E200E47E87 /* btnSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSettings.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,7 +319,7 @@
 				18E733991A8E2EAD00EA655A /* GameKit.framework in Frameworks */,
 				18C982A01A8BD49000D172C6 /* UIKit.framework in Frameworks */,
 				18C9829E1A8BD48800D172C6 /* CoreGraphics.framework in Frameworks */,
-				AA59362C1B773822005065B5 /* Chartboost.framework in Frameworks */,
+				AA2C509E1B92AAED00C84A3E /* Chartboost.framework in Frameworks */,
 				18C9829C1A8BD48300D172C6 /* Foundation.framework in Frameworks */,
 				18C9829A1A8BD47B00D172C6 /* StoreKit.framework in Frameworks */,
 			);
@@ -474,7 +476,7 @@
 		1841602C1A8EE07700104424 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA59362B1B773822005065B5 /* Chartboost.framework */,
+				AA2C509D1B92AAED00C84A3E /* Chartboost.framework */,
 				18E733981A8E2EAD00EA655A /* GameKit.framework */,
 				18C9829F1A8BD49000D172C6 /* UIKit.framework */,
 				18C9829D1A8BD48800D172C6 /* CoreGraphics.framework */,
@@ -560,6 +562,7 @@
 				181F84441A900890003175AD /* Images */,
 				188E996A1A8CDA4400C52A89 /* levelSetup.plist */,
 				1841602D1A8EE1D000104424 /* StarSound.wav */,
+				AABB02BE1B92861E00F2A233 /* Win.wav */,
 				AA0616A21B80170800A5F708 /* WompWomp.mp3 */,
 				1841602E1A8EE1D000104424 /* TrampolineSound.wav */,
 			);
@@ -723,6 +726,7 @@
 				181F84D51A900890003175AD /* Background05@2x.png in Resources */,
 				181F84FB1A900890003175AD /* btnRestart@2x.png in Resources */,
 				AA2840261B8540C2003BD679 /* stars.png in Resources */,
+				AABB02BF1B92861E00F2A233 /* Win.wav in Resources */,
 				181F84F41A900890003175AD /* Background@2x.png in Resources */,
 				181F85091A900890003175AD /* btnUnlock@2x.png in Resources */,
 				181F84B91A900890003175AD /* Icon-72@2x.png in Resources */,

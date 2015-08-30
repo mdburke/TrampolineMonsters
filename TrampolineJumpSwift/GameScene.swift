@@ -112,9 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Scale Factor
     var scaleFactor: CGFloat = 0.0
     
-    
-    
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -305,6 +303,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         isRotatingLeft = false
         var counterFloat = CGFloat(counterRight) * -0.1;
         buttonOnCollision = true
+        player.physicsBody?.velocity.dy += 35
         
         if counterFloat >= -2 {
             
@@ -347,6 +346,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         isRotatingRight = false
         var counterFloat = CGFloat(counterLeft) * 0.1
         buttonOnCollision = true
+        player.physicsBody?.velocity.dy -= 50
         
         if counterFloat <= 2{
             
@@ -403,12 +403,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if !gamePaused{
                     
                     if node == rotateRight {
-                            
+                        
                             timerLeft.invalidate()
                             
                             counterLeft = 0
-                            
-                            println("spinRight")
                             
                             //player.runAction(spinRightStart)
                             timerRight = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector: Selector("updateCounterRight"), userInfo: nil, repeats: true)
@@ -417,8 +415,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                             timerRight.invalidate()
                             counterRight = 0
-                            
-                            println("spinLeft")
                         
                            // player.runAction(spinLeftStart)
                             timerLeft = NSTimer.scheduledTimerWithTimeInterval(0.1, target:self, selector: Selector("updateCounterLeft"), userInfo: nil, repeats: true)
@@ -494,9 +490,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 println("invalidate")
                 
             }
-        
-            isRotatingRight == false
-            isRotatingLeft == false
+            
+            counterLeft = 0
+            counterRight = 0 
+            isRotatingRight = false
+            isRotatingLeft = false
             buttonOnCollision = false
             allRotations = intermediateBF + intermediateFF + allRotations
         }
@@ -537,8 +535,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
-
-    
     // MARK: Contact/Collision Stuff
     
     func didBeginContact(contact: SKPhysicsContact) {
@@ -555,7 +551,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if updateHUD {
             
             //collide with star
-            
             
             if let star = other as? StarNode {
                 
@@ -578,10 +573,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                 }
                 
-                
             }
-            
-            
             
         }
         
@@ -629,6 +621,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func perfectAngleAction() {
         
+        var prevVelocity:CGFloat = (player.physicsBody!.velocity.dy * -1)
+        
         perfectJumpCount += 1
         
         if jumpCount == 0 {
@@ -642,13 +636,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if countRotSilent < allRotations{
         
-            perfectJumpMultiplyer = perfectJumpMultiplyer + CGFloat((allRotations - countRotSilent)/5)
+            perfectJumpMultiplyer = 2.5
             newVelocity = config.currentVelocity + (perfectJumpMultiplyer * config.perfectJumpMultiplyerValue)
-            
+            if prevVelocity >= 1 {
+                newVelocity += prevVelocity * 2
+            }
         } else {
             
             perfectJumpMultiplyer = 1
-            newVelocity = config.currentVelocity
+            newVelocity = config.currentVelocity + (perfectJumpMultiplyer * config.perfectJumpMultiplyerValue)
+            
+            if prevVelocity >= 1 {
+                newVelocity += prevVelocity
+            }
         }
         
         bounceAfterJumpAction()
@@ -657,9 +657,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func goodAngleAction() {
         
-        
+            var prevVelocity:CGFloat = (player.physicsBody!.velocity.dy * -1)
             perfectJumpMultiplyer = 0.0
             newVelocity = config.currentVelocity
+        if prevVelocity >= 1 {
+            newVelocity += prevVelocity
+        }
             bounceAfterJumpAction()
         }
 
@@ -967,6 +970,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func winGame() {
+        
+        GameState.sharedInstance.score += 1000
         
         if GameState.sharedInstance.score > GameState.sharedInstance.highScore{
             

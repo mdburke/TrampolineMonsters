@@ -1131,6 +1131,70 @@
 		<array>
 			<dict>
 				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>220</string>
+				<key>y</key>
+				<string>7850</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>280</string>
+				<key>y</key>
+				<string>7200</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>200</string>
+				<key>y</key>
+				<string>7000</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>150</string>
+				<key>y</key>
+				<string>7900</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>30</string>
+				<key>y</key>
+				<string>7800</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>30</string>
+				<key>y</key>
+				<string>5700</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>100</string>
+				<key>y</key>
+				<string>6100</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
+				<string>SingleBadStar</string>
+				<key>x</key>
+				<string>250</string>
+				<key>y</key>
+				<string>4000</string>
+			</dict>
+			<dict>
+				<key>pattern</key>
 				<string>Diamond</string>
 				<key>x</key>
 				<string>175</string>
@@ -1189,7 +1253,7 @@
 				<key>pattern</key>
 				<string>DoubleLineRightHard</string>
 				<key>x</key>
-				<string>50</string>
+				<string>80</string>
 				<key>y</key>
 				<string>3800</string>
 			</dict>
@@ -1205,9 +1269,9 @@
 				<key>pattern</key>
 				<string>Diamond</string>
 				<key>x</key>
-				<integer>210</integer>
+				<integer>190</integer>
 				<key>y</key>
-				<integer>2700</integer>
+				<real>2700</real>
 			</dict>
 			<dict>
 				<key>pattern</key>

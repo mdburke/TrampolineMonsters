@@ -10,12 +10,12 @@ import SpriteKit
 
 var volumeOn = true
 var instructionsOn = true
+var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(150,150, 150, 150)) as UIActivityIndicatorView
 
 class TitleScene: SKScene {
     
     var backgroundNode = SKNode()
     var foregroundNode = SKNode()
-    
     
     // Scale Factor
     var scaleFactor: CGFloat = 0.0
@@ -42,7 +42,6 @@ class TitleScene: SKScene {
     var charImage = SKSpriteNode(imageNamed: "Player00")
     var unlocked = false
 
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -110,6 +109,8 @@ class TitleScene: SKScene {
         
         
         unlocked = defaults.boolForKey("unlockedKey")
+        
+        //AppDelegate.showChartboostAds()
 
         
     }
@@ -148,7 +149,8 @@ class TitleScene: SKScene {
     
     func changeChar(){
         
-        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        unlocked = defaults.boolForKey("unlockedKey")
         
         println("image: \(pCount)")
             charImage.removeFromParent()
@@ -161,14 +163,12 @@ class TitleScene: SKScene {
             
             println("UNLOCKED: \(unlocked)")
             charImage.addChild(overlayButt)
-            
-            let defaults = NSUserDefaults.standardUserDefaults()
-            //defaults.setObject(pCount, forKey: "playerChoice")
+    
             defaults.setInteger(0, forKey: "playerChoice")
             
         }else{
             
-            let defaults = NSUserDefaults.standardUserDefaults()
+            
             //defaults.setObject(pCount, forKey: "playerChoice")
             defaults.setInteger(pCount, forKey: "playerChoice")
         }
@@ -222,34 +222,69 @@ class TitleScene: SKScene {
             if startButt.containsPoint(location) {
                 
                 
-                if instructionsOn == false {
-                    
-                    let reveal = SKTransition.fadeWithDuration(0.5)
-                    let gameScene = GameScene(size: self.size)
-                    self.view!.presentScene(gameScene, transition: reveal)
+                if !unlocked &&  pCount != 0 {
+                 
+                    var alertCannot = UIAlertController(title: "Error", message: "Must Purchase This Character", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertCannot.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    var vc = self.view?.window?.rootViewController
+                    vc?.presentViewController(alertCannot, animated: false, completion: { () -> Void in
+                        
+                    })
+
                     
                 } else {
-                    
-                    let reveal = SKTransition.fadeWithDuration(0.5)
-                    //let newSize = CGSize(width: self.size.width/2, height: self.size.height/2)
-                    let instructionsScene = InstructionsScene(size: self.size)
-                    self.view!.presentScene(instructionsScene, transition: reveal)
-                    
-                }
                 
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    
+                    if let instructionsOn = defaults.valueForKey("instructionsOn") as? Bool {
+                        
+                        let reveal = SKTransition.fadeWithDuration(0.5)
+                        let gameScene = GameScene(size: self.size)
+                        self.view!.presentScene(gameScene, transition: reveal)
+                        
+                    } else {
+                        
+                        let reveal = SKTransition.fadeWithDuration(0.5)
+                        //let newSize = CGSize(width: self.size.width/2, height: self.size.height/2)
+                        let instructionsScene = InstructionsScene(size: self.size)
+                        self.view!.presentScene(instructionsScene, transition: reveal)
+                        
+                    }
+                }
 
                 
-            }else if upgradeButt.containsPoint(location) {
+            } else if upgradeButt.containsPoint(location) {
                 
                 let defaults = NSUserDefaults.standardUserDefaults()
                 var unlocked = defaults.boolForKey("unlockedKey")
                 if !unlocked {
                     
-                    FunkyPiDevIAP.sharedInstance.buyIAP()
+                    actInd.center = self.view!.center
+                    actInd.hidesWhenStopped = true
+                    actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        
+                        
+                        self.view!.addSubview(actInd)
+                        actInd.startAnimating()
+                        
+                        FunkyPiDevIAP.sharedInstance.buyIAP()
+                        
+                    })
+                    
+                    unlocked = true
+                    defaults.setBool(unlocked, forKey: "unlockedKey")
+                    
                     
                 } else {
                     
-                    
+                    var alertNothing = UIAlertController(title: "Error", message: "Nothing Left to Buy", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertNothing.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    var vc = self.view?.window?.rootViewController
+                    vc?.presentViewController(alertNothing, animated: false, completion: { () -> Void in
+                        
+                    })
                     
                 }
                     
@@ -262,7 +297,39 @@ class TitleScene: SKScene {
     
             }else if restoreButt.containsPoint(location){
                 
-                FunkyPiDevIAP.sharedInstance.restoreIAP()
+                let defaults = NSUserDefaults.standardUserDefaults()
+                var unlocked = defaults.boolForKey("unlockedKey")
+                if !unlocked {
+                    
+                    actInd.center = self.view!.center
+                    actInd.hidesWhenStopped = true
+                    actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        
+                        
+                        self.view!.addSubview(actInd)
+                        actInd.startAnimating()
+                        
+                        FunkyPiDevIAP.sharedInstance.restoreIAP()
+                        
+                    })
+                    
+                    unlocked = true
+                    defaults.setBool(unlocked, forKey: "unlockedKey")
+                    
+                } else {
+                    
+                    
+                    var alertNothing = UIAlertController(title: "Error", message: "Nothing Left to Buy", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertNothing.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    var vc = self.view?.window?.rootViewController
+                    vc?.presentViewController(alertNothing, animated: false, completion: { () -> Void in
+                        
+                    })
+                    
+                    
+                }
                 
             }else if goLeft.containsPoint(location){
                 

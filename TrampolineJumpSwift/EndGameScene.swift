@@ -10,6 +10,7 @@ import SpriteKit
 
 class EndGameScene: SKScene {
     
+    
     var didWinVar:Bool?
     var labelText:String?
     var allStarsVar:Bool?
@@ -130,11 +131,12 @@ class EndGameScene: SKScene {
         
         if didWinVar! == true {
             
-            labelText = "Good Job"
             
             if allStarsVar == true {
-                lblTwo.text = "You Won!"
+                labelText = "You Won!"
+                lblTwo.text = "But can you get a higher score?"
             } else {
+                labelText = "Good Job!"
                 lblTwo.text = "But you didn't get all the stars!"
             }
             
@@ -150,16 +152,44 @@ class EndGameScene: SKScene {
         
         addChild(lblTryAgain)
         
+        
+        
     }
     
     override func didMoveToView(view: SKView) {
         let wompWomp = SKAction.playSoundFileNamed("WompWomp.mp3", waitForCompletion: false)
+        let winSound = SKAction.playSoundFileNamed("Win.wav", waitForCompletion: false)
         
         if volumeOn == true {
-            runAction(wompWomp, completion: { () -> Void in
             
-            })
+            if didWinVar == false {
+                
+                runAction(wompWomp, completion: { () -> Void in
+                
+                    
+                })
+
+            } else {
+                
+                runAction(winSound, completion: { () -> Void in
+ 
+                    
+                })
+                
+            }
         }
+        
+        if GameState.sharedInstance.adCount == 3 {
+            
+            AppDelegate.showChartboostAds()
+            GameState.sharedInstance.adCount = 1
+            
+        } else {
+            
+            GameState.sharedInstance.adCount += 1
+        }
+        
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

@@ -15,9 +15,9 @@ class GameState {
     var highScore: Int
     var recordHeight: Int
     var allFlip: Int
-    var instructionsOn: Bool = true
+    var adCount = 1
 
-    class var sharedInstance :GameState {
+    class var sharedInstance : GameState {
         struct Singleton {
             static let instance = GameState()
         }
